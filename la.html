@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Gemechu Family - A loving family from Addis Ababa, Ethiopia">
+  <title>The Gemechu Family | Addis Ababa, Ethiopia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green: #078930;
+      --yellow: #FCDD09;
+      --red: #DA121A;
+      --blue: #0F47AF;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --white: #ffffff;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.1);
+      --shadow-lg: 0 20px 50px rgba(0,0,0,0.15);
+      --radius: 20px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.7;
+      color: var(--dark);
+      background: var(--light);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== SCROLL PROGRESS BAR ===== */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), var(--yellow), var(--red));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    nav.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--gray);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      background: var(--green);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      background: var(--dark);
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(7,137,48,0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(218,18,26,0.2) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(252,221,9,0.12) 0%, transparent 60%);
+      animation: pulseGlow 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { opacity: 0.7; }
+      to { opacity: 1; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      color: var(--yellow);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      color: white;
+      margin-bottom: 20px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--yellow), var(--green), var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255,255,255,0.8);
+      max-width: 650px;
+      margin: 0 auto 40px;
+      font-weight: 300;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green), #0a6b28);
+      color: white;
+      box-shadow: 0 10px 30px rgba(7,137,48,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(7,137,48,0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+      transform: translateY(-4px);
+    }
+
+    /* Floating shapes */
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.08;
+      animation: float 15s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 300px; height: 300px;
+      background: var(--green);
+      top: 10%; left: 5%;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 200px; height: 200px;
+      background: var(--red);
+      bottom: 15%; right: 8%;
+      animation-delay: 3s;
+    }
+
+    .shape-3 {
+      width: 150px; height: 150px;
+      background: var(--yellow);
+      top: 60%; left: 10%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-40px) rotate(180deg); }
+    }
+
+    /* ===== SECTION BASE ===== */
+    section {
+      padding: 100px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      padding: 6px 18px;
+      background: rgba(7,137,48,0.1);
+      color: var(--green);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .about-text p {
+      color: var(--gray);
+      margin-bottom: 16px;
+      font-size: 1.02rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .about-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .family-emblem {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--blue), var(--red));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      animation: rotateSlow 30s linear infinite;
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .family-emblem-inner {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: var(--light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: rotateSlow 30s linear infinite reverse;
+    }
+
+    .family-emblem-inner .heart {
+      font-size: 4rem;
+      margin-bottom: 8px;
+    }
+
+    .family-emblem-inner .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .family-emblem-inner .sub {
+      font-size: 0.8rem;
+      color: var(--gray);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ===== FAMILY MEMBERS ===== */
+    .members-section {
+      background: white;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .member-card {
+      background: var(--light);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--green), var(--yellow), var(--red));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .member-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .member-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(7,137,48,0.15);
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .member-card:hover .avatar {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .avatar-dad { background: linear-gradient(135deg, #078930, #0a6b28); }
+    .avatar-mom { background: linear-gradient(135deg, #DA121A, #a80e15); }
+    .avatar-son1 { background: linear-gradient(135deg, #0F47AF, #0a3585); }
+    .avatar-son2 { background: linear-gradient(135deg, #FCDD09, #d4b807); color: #333; }
+    .avatar-daughter1 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .avatar-daughter2 { background: linear-gradient(135deg, #ec4899, #be185d); }
+
+    .member-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+
+    .member-role {
+      display: inline-block;
+      padding: 4px 14px;
+      background: rgba(7,137,48,0.1);
+      color: var(--green);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .member-info {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 6px;
+    }
+
+    .member-info strong {
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    /* ===== TIMELINE / EDUCATION ===== */
+    .education-section {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .education-section .section-header h2 {
+      color: white;
+    }
+
+    .education-section .section-header p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .education-section .section-tag {
+      background: rgba(252,221,9,0.15);
+      color: var(--yellow);
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .edu-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 28px;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .edu-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-6px);
+      border-color: rgba(252,221,9,0.3);
+    }
+
+    .edu-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+
+    .edu-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .edu-card .school {
+      font-size: 0.85rem;
+      color: var(--yellow);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .edu-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    /* ===== VALUES SECTION ===== */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .value-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), var(--yellow), var(--red));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .value-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .value-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .value-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .value-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    /* ===== LOCATION ===== */
+    .location-section {
+      background: white;
+    }
+
+    .location-card {
+      background: linear-gradient(135deg, var(--green), #0a6b28);
+      border-radius: var(--radius);
+      padding: 60px 40px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .location-card::before {
+      content: '🇪🇹';
+      position: absolute;
+      font-size: 15rem;
+      opacity: 0.06;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .location-card h3 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .location-card .address {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .location-details {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .location-detail {
+      text-align: center;
+    }
+
+    .location-detail .icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .location-detail .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    .location-detail .value {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* ===== QUOTE SECTION ===== */
+    .quote-section {
+      background: linear-gradient(135deg, #fef3c7, #fce7f3);
+      text-align: center;
+    }
+
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-style: italic;
+      color: var(--dark);
+      max-width: 800px;
+      margin: 0 auto 24px;
+      line-height: 1.4;
+      position: relative;
+    }
+
+    .quote-section blockquote::before {
+      content: '"';
+      font-size: 6rem;
+      color: var(--green);
+      opacity: 0.2;
+      position: absolute;
+      top: -40px;
+      left: -20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .quote-author {
+      font-size: 1rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+      padding: 60px 24px 30px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+    }
+
+    .footer-col ul li a {
+      transition: var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--yellow);
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    .footer-bottom .heart {
+      color: var(--red);
+    }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 998;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-visual {
+        order: -1;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        gap: 4px;
+        box-shadow: var(--shadow-md);
+        transform: translateY(-150%);
+        transition: transform 0.35s ease;
+        border-radius: 0 0 var(--radius) var(--radius);
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        padding: 12px 16px;
+        border-radius: 12px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      section {
+        padding: 70px 20px;
+      }
+
+      .family-emblem {
+        width: 240px;
+        height: 240px;
+      }
+
+      .family-emblem-inner {
+        width: 210px;
+        height: 210px;
+      }
+
+      .family-emblem-inner .heart { font-size: 3rem; }
+      .family-emblem-inner .name { font-size: 1.1rem; }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .location-card {
+        padding: 40px 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .stat-card {
+        padding: 18px;
+      }
+
+      .stat-number { font-size: 2rem; }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">Gemechu Family</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#family">Family</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#values">Values</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">🇪🇹 Addis Ababa, Ethiopia</div>
+      <h1>Welcome to the <br><span class="accent">Gemechu Family</span></h1>
+      <p>A family built on love, respect, and togetherness. Meet Gemechu Temesgen, Yemiserach Yohannes, and their four wonderful children.</p>
+      <div class="hero-buttons">
+        <a href="#family" class="btn btn-primary">Meet Our Family →</a>
+        <a href="#about" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">About Us</span>
+        <h2>A Story of Love & Unity</h2>
+        <p>We are a happy family of six living in Addis Ababa, Ethiopia, bound by love, respect, and shared dreams.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <h3>Our Journey Together</h3>
+          <p>
+            Our family began with the marriage of <strong>Gemechu Temesgen</strong> and <strong>Yemiserach Yohannes</strong>. Together, we have built a home filled with laughter, learning, and unconditional love.
+          </p>
+          <p>
+            We are blessed with four beautiful children — two sons and two daughters — each bringing their own unique joy and personality to our family. We believe that education, respect, and faith are the pillars that hold a family together.
+          </p>
+          <p>
+            Every day we strive to grow together, support one another, and create memories that will last a lifetime.
+          </p>
+
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-number">6</div>
+              <div class="stat-label">Family Members</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2</div>
+              <div class="stat-label">Sons</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2</div>
+              <div class="stat-label">Daughters</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">∞</div>
+              <div class="stat-label">Love & Respect</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual reveal">
+          <div class="family-emblem">
+            <div class="family-emblem-inner">
+              <div class="heart">❤️</div>
+              <div class="name">Gemechu Family</div>
+              <div class="sub">Since Forever</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Family Members Section -->
+  <section class="members-section" id="family">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Our Family</span>
+        <h2>Meet the Gemechu Family</h2>
+        <p>Six hearts, one home. Get to know each member of our beloved family.</p>
+      </div>
+
+      <div class="members-grid">
+
+        <!-- Father -->
+        <div class="member-card reveal">
+          <div class="avatar avatar-dad">GT</div>
+          <h3>Gemechu Temesgen</h3>
+          <span class="member-role">Father</span>
+          <p class="member-info"><strong>Role:</strong> Head of the Family</p>
+          <p class="member-info"><strong>Location:</strong> Addis Ababa, Ethiopia</p>
+        </div>
+
+        <!-- Mother -->
+        <div class="member-card reveal">
+          <div class="avatar avatar-mom">YY</div>
+          <h3>Yemiserach Yohannes</h3>
+          <span class="member-role">Mother</span>
+          <p class="member-info"><strong>Role:</strong> Heart of the Home</p>
+          <p class="member-info"><strong>Location:</strong> Addis Ababa, Ethiopia</p>
+        </div>
+
+        <!-- First Son -->
+        <div class="member-card reveal">
+          <div class="avatar avatar-son1">FG</div>
+          <h3>Firaol Gemechu</h3>
+          <span class="member-role">First Son</span>
+          <p class="member-info"><strong>Age:</strong> 18 years old</p>
+          <p class="member-info"><strong>Status:</strong> 🎓 Finished School This Year</p>
+        </div>
+
+        <!-- Second Son -->
+        <div class="member-card reveal">
+          <div class="avatar avatar-son2">AG</div>
+          <h3>Amanuel Gemechu</h3>
+          <span class="member-role">Second Son</span>
+          <p class="member-info"><strong>Age:</strong> 14 years old</p>
+          <p class="member-info"><strong>Grade:</strong> Grade 9</p>
+          <p class="member-info"><strong>School:</strong> Lem General Secondary School</p>
+        </div>
+
+        <!-- First Daughter -->
+        <div class="member-card reveal">
+          <div class="avatar avatar-daughter1">TG</div>
+          <h3>Tsion Gemechu</h3>
+          <span class="member-role">Third Child</span>
+          <p class="member-info"><strong>Age:</strong> 9 years old</p>
+          <p class="member-info"><strong>Grade:</strong> Grade 3</p>
+          <p class="member-info"><strong>School:</strong> Super Holy Saviour School</p>
+        </div>
+
+        <!-- Second Daughter -->
+        <div class="member-card reveal">
+          <div class="avatar avatar-daughter2">MG</div>
+          <h3>Mena Gemechu</h3>
+          <span class="member-role">Fourth Child</span>
+          <p class="member-info"><strong>Age:</strong> 6 years old</p>
+          <p class="member-info"><strong>Grade:</strong> KG 3</p>
+          <p class="member-info"><strong>School:</strong> Super Holy Saviour School</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="education-section" id="education">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Education</span>
+        <h2>Learning & Growing Together</h2>
+        <p>Education is at the heart of our family. Here's where our children are on their learning journey.</p>
+      </div>
+
+      <div class="education-grid">
+
+        <div class="edu-card reveal">
+          <div class="edu-icon">🎓</div>
+          <h3>Firaol Gemechu</h3>
+          <div class="school">School Graduate — 2025</div>
+          <p>Our eldest son has successfully completed his school education this year at 18 years old. We are incredibly proud of his achievement and excited for his next chapter.</p>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon">📚</div>
+          <h3>Amanuel Gemechu</h3>
+          <div class="school">Lem General Secondary School</div>
+          <p>Amanuel is 14 years old and currently in Grade 9. He is a dedicated student with a bright future ahead of him.</p>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon">✏️</div>
+          <h3>Tsion Gemechu</h3>
+          <div class="school">Super Holy Saviour School</div>
+          <p>Tsion is 9 years old and in Grade 3. She loves learning and brings joy to our family every day with her curiosity.</p>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon">🌟</div>
+          <h3>Mena Gemechu</h3>
+          <div class="school">Super Holy Saviour School</div>
+          <p>Our youngest, Mena, is 6 years old and in KG 3. She is just beginning her educational journey, and we are so proud of her.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section id="values">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Our Values</span>
+        <h2>What Holds Us Together</h2>
+        <p>Our family is built on a foundation of strong values that guide us every day.</p>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <span class="value-icon">❤️</span>
+          <h3>Love</h3>
+          <p>Unconditional love binds us together and gives us strength through every season of life.</p>
+        </div>
+
+        <div class="value-card reveal">
+          <span class="value-icon">🤝</span>
+          <h3>Respect</h3>
+          <p>We honor each other's feelings, opinions, and individuality, creating a home of mutual trust.</p>
+        </div>
+
+        <div class="value-card reveal">
+          <span class="value-icon">📖</span>
+          <h3>Education</h3>
+          <p>We believe learning is a lifelong journey and encourage each member to grow and excel.</p>
+        </div>
+
+        <div class="value-card reveal">
+          <span class="value-icon">🙏</span>
+          <h3>Faith</h3>
+          <p>Our faith keeps us grounded, grateful, and hopeful for the future we are building together.</p>
+        </div>
+
+        <div class="value-card reveal">
+          <span class="value-icon">💪</span>
+          <h3>Support</h3>
+          <p>We stand by one another in good times and hard times, always ready to help and uplift.</p>
+        </div>
+
+        <div class="value-card reveal">
+          <span class="value-icon">😊</span>
+          <h3>Joy</h3>
+          <p>Laughter and happiness fill our home, making every moment together a precious memory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section class="location-section" id="location">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Where We Live</span>
+        <h2>Our Home in Addis Ababa</h2>
+        <p>We are proud to call this beautiful city our home.</p>
+      </div>
+
+      <div class="location-card reveal">
+        <h3>📍 Addis Ababa, Ethiopia</h3>
+        <p class="address">Around Megenagna — 24</p>
+
+        <div class="location-details">
+          <div class="location-detail">
+            <span class="icon">🏙️</span>
+            <div class="label">City</div>
+            <div class="value">Addis Ababa</div>
+          </div>
+          <div class="location-detail">
+            <span class="icon">🇪🇹</span>
+            <div class="label">Country</div>
+            <div class="value">Ethiopia</div>
+          </div>
+          <div class="location-detail">
+            <span class="icon">🏘️</span>
+            <div class="label">Area</div>
+            <div class="value">Megenagna 24</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section">
+    <div class="container reveal">
+      <blockquote>
+        Family is not an important thing. It's everything.
+      </blockquote>
+      <p class="quote-author">— Our Family Motto</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Gemechu Family</h3>
+        <p>A loving family of six based in Addis Ababa, Ethiopia. Built on love, respect, education, and faith — growing together every day.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#family">Our Family</a></li>
+          <li><a href="#education">Education</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Our Family</h4>
+        <ul>
+          <li>Gemechu Temesgen</li>
+          <li>Yemiserach Yohannes</li>
+          <li>Firaol, Amanuel</li>
+          <li>Tsion, Mena</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Gemechu Family. Made with <span class="heart">❤</span> in Addis Ababa, Ethiopia.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- JavaScript -->
+  <script>
+    // ===== Scroll Progress Bar =====
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    });
+
+    // ===== Navbar Scroll Effect =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ===== Mobile Menu Toggle =====
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ===== Back to Top Button =====
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 500);
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Scroll Reveal Animation =====
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ===== Counter Animation for Stats =====
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const text = el.textContent.trim();
+
+          // Only animate numeric values
+          if (!isNaN(text)) {
+            const target = parseInt(text);
+            let count = 0;
+            const step = Math.max(1, Math.floor(target / 30));
+
+            const timer = setInterval(() => {
+              count += step;
+              if (count >= target) {
+                count = target;
+                clearInterval(timer);
+              }
+              el.textContent = count;
+            }, 40);
+          }
+
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(el => counterObserver.observe(el));
+
+    // ===== Smooth Scroll for Older Browsers =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          const offsetTop = targetEl.offsetTop - 70;
+          window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
